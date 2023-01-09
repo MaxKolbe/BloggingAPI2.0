@@ -2,11 +2,11 @@ const userModel = require("../models/userModel")
 const articleModel = require("../models/articleModel")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const { authenticateToken } = require("../middleware/auth")
+require("dotenv").config()
 
 const age = 60 * 60 
 const createJwt = (id)=>{
-  return jwt.sign({id}, "myAccessTokenSecret", {expiresIn: age})
+  return jwt.sign({id}, process.env.secret, {expiresIn: age})
 }
 
 module.exports.signup_get = (req, res)=>{

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
+require("dotenv").config()
 
-const connectionURI = "mongodb://localhost:27017"
+const connectionURI = process.env.URI
 
 mongoose.set('strictQuery', false);
 

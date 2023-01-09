@@ -1,9 +1,10 @@
 const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 const authenticateToken = (req, res, next)=>{
   const token = req.cookies.jwt
   if(token){
-    jwt.verify(token, "myAccessTokenSecret", (err, data)=>{
+    jwt.verify(token, process.env.secret, (err, data)=>{
       if(err){
         console.log(err)
         res.redirect("/rab/login")
