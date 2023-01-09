@@ -20,7 +20,9 @@
           <div class="blw">
             <a href="/rab/articles/<%=article.id%>" style="color: blue; border: 2px solid blue;">Read more</a>
             <a href="/rab/edit/<%=article.id%>" style="color: rgb(104, 67, 78); border: 2px solid rgb(104, 67, 78);">Edit</a>
-            <a href="" style="color: rgb(161, 12, 57); border: 2px solid rgb(161, 12, 57);">Delete</a>
+            <form action="/rab/articles?_method=DELETE" method="POST">
+              <a href="" style="color: rgb(161, 12, 57); border: 2px solid rgb(161, 12, 57);">Delete</a>
+            </form>
           </div>
         </div>
       <% }) %>

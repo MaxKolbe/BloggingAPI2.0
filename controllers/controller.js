@@ -91,3 +91,21 @@ module.exports.get_editForm = async (req, res)=>{
   const article = await articleModel.findById(req.params.id)
   res.render("edit", {article: article})
 }
+module.exports.editForm = async (req, res)=>{
+  
+  const {title, description, body, tags} = req.body
+  await articleModel.findByIdAndUpdate(req.params.id, {
+    title, description, body, tags, state,
+    timestamp: new Date(),
+    read_count: 1,
+  })
+  res.redirect(`/rab/articles/${article.id}`)
+}
+module.exports.deleteArticle = async (req, res)=>{
+  id = req.params.id
+  try{
+    await articleModel.findByIdAndDelete(id)
+  }catch(err){
+    res.redirect("rab/articles")
+  }
+}

@@ -2,6 +2,7 @@ const express = require("express")
 const controller = require("../controllers/controller")
 const {authenticateToken} = require("../middleware/auth")
 const router = express.Router()
+router.use(express.urlencoded({extended: false}))
 
 router.get("/login", controller.login_get)
 router.post("/login", controller.login_post)
@@ -12,5 +13,7 @@ router.get("/new", authenticateToken, controller.show_newArticles)
 router.post("/new", authenticateToken, controller.create_newArticles)
 router.get("/articles/:id", authenticateToken, controller.show_oneArticle)
 router.get("/edit/:id", authenticateToken, controller.get_editForm)
+router.put("/edit/:id", authenticateToken, controller.editForm)
+router.delete("/:id", authenticateToken, controller.deleteArticle)
 
 module.exports = router

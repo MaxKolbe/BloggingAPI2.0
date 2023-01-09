@@ -70,7 +70,7 @@ ul li a{
   left: 50%;
   transform: translate(-50%, -50%);
 }
-form {
+.form{
   width: 300px; 
   margin: auto; /* center the form horizontally */
   background-color: #4A5568; 
