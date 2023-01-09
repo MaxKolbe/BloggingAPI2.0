@@ -8,7 +8,7 @@ require("dotenv").config()
 serverDb.connectToMongodb() //connecting to mongodb
 
 const app = express() //requiring the express app
-const port = 3000 || process.env.port
+const PORT = 3000 || process.env.PORT
 
 app.use(express.json()) //requiring JSON middleware
 app.use(express.static('public')); //access to public folder
@@ -26,6 +26,6 @@ app.use("/rab", route)
 
 
 // Server listener 
-app.listen(port, ()=>{
+app.listen(PORT, ()=>{
   // console.log(`Server is running at http://localhost:${port}`)
 })
