@@ -2,7 +2,7 @@
 <section class="homesection">
   <div class="innersection">
    <div class="container">
-      <form class="form" action="/rab/articles/<%=article.id%>?_method=PUT" method="POST">
+      <form class="form" action="/rab/edit/<%=article.id%>?_method=PUT" method="POST">
         
         <label for="title">Title:</label><br>
         <input type="text" id="title" name="title"><br>
@@ -19,7 +19,7 @@
         <label for="tags"> Tags:</label><br>
         <input type="text" id="tags" name="tags"><br>
 
-        <input type="submit" value="Edit"><br><br>
+        <button type="submit">Edit</button>
         <a href="/rab/articles" class="goback" style="background-color:rgb(104, 67, 78);">Cancel</a>
     </form>
    </div>
