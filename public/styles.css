@@ -157,7 +157,7 @@ input[type="submit"]{
   flex-direction: row;  
   justify-content: space-around;
 }
-.blw a{
+.blw a, .del{
  text-decoration: none;
  font-size: 16px;
  padding: 8px 6px;
@@ -176,4 +176,15 @@ input[type="submit"]{
 }
 .tagss span{
   font-weight: bold;
+}
+.edt{
+  background-color: #3182CE;
+  color: #EDF2FC;
+  padding: 4.5% 45.5%; 
+  margin-bottom: 8%;
+  margin-top: 4%;
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer;
+  text-decoration: none;
 }
