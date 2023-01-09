@@ -14,12 +14,12 @@
       </div>
       <% articles.forEach(article =>{ %>
         <div class="box">
-          <h2><%= article.title %> by <%= user.firstname %> <span>< <%= article.state%> ></span></h2>
+          <h2><%= article.title %> by --Defualt--<span>< <%= article.state%> ></span></h2>
           <h3><%= article.description %></h3>
           <h4><%= article.timestamp.toLocaleDateString()%></h4>
           <div class="blw">
-            <a href="" style="color: blue; border: 2px solid blue;">Read more</a>
-            <a href="" style="color: rgb(104, 67, 78); border: 2px solid rgb(104, 67, 78);">Edit</a>
+            <a href="/rab/articles/<%=article.id%>" style="color: blue; border: 2px solid blue;">Read more</a>
+            <a href="/rab/edit/<%=article.id%>" style="color: rgb(104, 67, 78); border: 2px solid rgb(104, 67, 78);">Edit</a>
             <a href="" style="color: rgb(161, 12, 57); border: 2px solid rgb(161, 12, 57);">Delete</a>
           </div>
         </div>

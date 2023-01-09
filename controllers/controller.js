@@ -20,9 +20,9 @@ module.exports.signup_post = async (req, res)=>{
   try{
     const hashedPassword = await bcrypt.hash(password, 10)
     const user = await userModel.create({email, firstname, lastname, password: hashedPassword})
-    const token = createJwt(user._id)
+    const token = createJwt(user.id)
     res.cookie("jwt", token, {httpOnly: true})
-    console.log(user._id)
+    // console.log(user.id)
     res.redirect("/rab/articles")
   }catch(err){
     console.log(err)
@@ -35,9 +35,9 @@ module.exports.login_post = async (req, res)=>{
     const user = await userModel.findOne({email})
     if(user){
       if(await bcrypt.compare(password, user.password)){
-        const token = createJwt(user._id)
+        const token = createJwt(user.id)
         res.cookie("jwt", token, {httpOnly: true})
-        console.log(user._id)
+        // console.log(user.id)
         res.redirect("/rab/articles")
       }else{
         res.redirect("/rab/login")
@@ -52,23 +52,24 @@ module.exports.login_post = async (req, res)=>{
 }
 module.exports.show_articles = async (req, res)=>{
   const articles = await articleModel.find().limit(3)
-  const token = req.cookies.jwt
-  const decoded = jwt.verify(token, "myAccessTokenSecret")
-  const user = userModel.findById(decoded.id)
-  res.render("articles", {articles: articles, user: user})
+  // const token = req.cookies.jwt
+  // const decoded = jwt.verify(token, "myAccessTokenSecret")
+  // const user = userModel.findById(decoded)
+  res.render("articles", {articles: articles/*, user: user*/})
 }
 module.exports.show_newArticles = (req, res)=>{
   res.render("newArticle")
 }
 module.exports.create_newArticles= async (req, res)=>{
   const {title, description, body, tags} = req.body
-  const token = req.cookies.jwt
-  const decoded = jwt.verify(token, "myAccessTokenSecret")
-  const user = userModel.findById(decoded.id)
+  // const token = req.cookies.jwt
+  // const decoded = jwt.verify(token, "myAccessTokenSecret")
+  // const id = decoded.id
+  // const user = userModel.findById(id)
+  // console.log(user)
     try{
-      await articleModel.create({
+     const article =  await articleModel.create({
         title,
-        author: user.firstname,
         description,
         body,
         tags,
@@ -76,8 +77,17 @@ module.exports.create_newArticles= async (req, res)=>{
         read_count: 1,
         state: "Draft"
       })
-      res.redirect("/rab/articles")
+      res.redirect(`/rab/articles/${article.id}`)
     }catch(err){
       res.redirect("/rab/new")
     }
+}
+module.exports.show_oneArticle = async (req, res)=>{
+  const id = req.params.id
+  const article = await articleModel.findById(id)
+  res.render("oneArticle", {article: article})
+}
+module.exports.get_editForm = async (req, res)=>{
+  const article = await articleModel.findById(req.params.id)
+  res.render("edit", {article: article})
 }

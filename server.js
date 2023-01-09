@@ -2,6 +2,7 @@ const express = require("express") //importing express
 const serverDb = require("./serverDb") //importing the database connection function
 const route = require("./routes/routes") // imports the route
 const cookieParser = require("cookie-parser")
+const methodOverride = require("method-override")
 
 require("dotenv").config()
 serverDb.connectToMongodb() //connecting to mongodb
@@ -13,6 +14,7 @@ app.use(express.json()) //requiring JSON middleware
 app.use(express.static('public')); //access to public folder
 app.use(express.urlencoded({extended: false})) //Accessing forms in the req variable
 app.use(cookieParser())
+app.use(methodOverride("_method"))
 app.set("view engine", "ejs") // setting view engine
 app.set('views', 'views'); // setting views folder
 
