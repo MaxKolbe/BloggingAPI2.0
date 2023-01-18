@@ -15,5 +15,6 @@ router.get("/articles/:id", authenticateToken, controller.show_oneArticle)
 router.get("/edit/:id", authenticateToken, controller.get_editForm)
 router.put("/edit/:id", authenticateToken, controller.editForm)
 router.delete("/:id", authenticateToken, controller.deleteArticle)
+router.get("/logout", controller.logout)
 
 module.exports = router

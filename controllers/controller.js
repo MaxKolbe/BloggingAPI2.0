@@ -105,3 +105,7 @@ module.exports.deleteArticle = async (req, res)=>{
   await articleModel.findByIdAndDelete(id)
   res.redirect("/rab/articles")
 }
+module.exports.logout = async (req, res)=>{
+  res.cookie("jwt", "", {expiresIn: 1})
+  res.render("home")
+}
