@@ -5,7 +5,7 @@
 }
 .homesection{
   width: 100%;
-  height: 10vh;
+  min-height: 100vh;
   background-color: #EDF2FC;
 }
 .innersection{
