@@ -3,9 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-.homesection{
-  width: 100%;
-  min-height: 100vh;
+html, body {
+  height: 100%;
+  margin: 0;
   background-color: #EDF2FC;
 }
 .innersection{
