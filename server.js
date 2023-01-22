@@ -5,11 +5,10 @@ const cookieParser = require("cookie-parser")
 const methodOverride = require("method-override")
 require("dotenv").config()
 
-
-serverDb.connectToMongodb() //connecting to mongodb
-
 const app = express() //requiring the express app
 const port = process.env.PORT
+
+serverDb.connectToMongodb() //connecting to mongodb
 
 app.use(express.json()) //requiring JSON middleware
 app.use(express.static('public')); //access to public folder

@@ -51,10 +51,7 @@ module.exports.login_post = async (req, res)=>{
   }
 }
 module.exports.show_articles = async (req, res)=>{
-  const articles = await articleModel.find().limit(3)
-  // const token = req.cookies.jwt
-  // const decoded = jwt.verify(token, "myAccessTokenSecret")
-  // const user = userModel.findById(decoded)
+  const articles = await articleModel.find()
   res.render("articles", {articles: articles/*, user: user*/})
 }
 module.exports.show_newArticles = (req, res)=>{
@@ -62,14 +59,15 @@ module.exports.show_newArticles = (req, res)=>{
 }
 module.exports.create_newArticles= async (req, res)=>{
   const {title, description, body, tags} = req.body
-  // const token = req.cookies.jwt
-  // const decoded = jwt.verify(token, "myAccessTokenSecret")
-  // const id = decoded.id
-  // const user = userModel.findById(id)
+  const token = req.cookies.jwt
+  const decoded = jwt.verify(token, "myAccessTokenSecret")
+  const ids = decoded.id
+  const user = await userModel.findById(ids)
   // console.log(user)
     try{
      const article =  await articleModel.create({
         title,
+        author: user.firstname,
         description,
         body,
         tags,
@@ -106,6 +104,6 @@ module.exports.deleteArticle = async (req, res)=>{
   res.redirect("/rab/articles")
 }
 module.exports.logout = async (req, res)=>{
-  res.cookie("jwt", "", {expiresIn: 1})
+  res.clearCookie("jwt")
   res.render("home")
 }

@@ -1,6 +1,6 @@
 <%- include("partials/header"); -%>
  <div class="box">
-          <h2><%= article.title %> by --Defualt--<span>< <%= article.state%> ></span></h2>
+          <h2><%= article.title %> by  <%= article.author%><span>< <%= article.state%> ></span></h2>
           <h3><%= article.description %></h3>
           <h4><%= article.timestamp.toLocaleDateString()%></h4>
           <p class="bodyy"><%= article.body %></p>
